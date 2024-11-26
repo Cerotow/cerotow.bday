@@ -98,36 +98,37 @@
             "Jhorwie"
         ];
 
-        let index = 0;
-        const typingElement = document.getElementById('typing');
-        const typingSpeed = 30;
-        let paragraph;
+        window.onload = () => {
+            let index = 0;
+            const typingElement = document.getElementById('typing');
+            const typingSpeed = 100;
 
-        function typeText() {
-            if (index < texts.length) {
-                paragraph = document.createElement('p');
-                paragraph.className = 'space';
-                typingElement.appendChild(paragraph);
-                let charIndex = 0;
+            function typeText() {
+                if (index < texts.length) {
+                    const paragraph = document.createElement('p');
+                    paragraph.className = 'space';
+                    typingElement.appendChild(paragraph);
+                    let charIndex = 0;
 
-                function typeChar() {
-                    if (charIndex < texts[index].length) {
-                        paragraph.textContent += texts[index][charIndex];
-                        charIndex++;
-                        setTimeout(typeChar, typingSpeed);
-                    } else {
-                        index++;
-                        if (index < texts.length) {
-                            setTimeout(typeText, 1500); // Pause before typing the next text
+                    function typeChar() {
+                        if (charIndex < texts[index].length) {
+                            paragraph.textContent += texts[index][charIndex];
+                            charIndex++;
+                            setTimeout(typeChar, typingSpeed);
+                        } else {
+                            index++;
+                            if (index < texts.length) {
+                                setTimeout(typeText, 1500); // Pause before typing the next text
+                            }
                         }
                     }
+
+                    typeChar();
                 }
-
-                typeChar();
             }
-        }
 
-        typeText();
+            typeText();
+        };
     </script>
 
 </body>
